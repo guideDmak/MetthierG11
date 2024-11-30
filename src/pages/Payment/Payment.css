@@ -1,0 +1,79 @@
+.payhead{
+  color: #473366;
+  text-align: center;
+}
+
+.Payment-container {
+    text-align: center;
+    background-color: #ffffff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* border-radius: 10px; */
+    margin-top: 40%;
+  }
+  
+  .table-container {
+    justify-items: center;
+    width: 95%;
+    margin-bottom: 6rem;
+    /* border-radius: 10px; */
+  }
+  
+  .loca-table {
+    color: black;
+    width: 100%;
+    padding-bottom: 15px;
+    margin-left: 20px;
+    justify-items: center;
+    font-size: x-large;
+    border-radius: 10px;
+  }
+  
+  .payment-table {
+    color: #000000;
+    background-color: #ffffff;
+    border: #473366 2px solid;
+    width: 95%;
+    height: 500px;
+    justify-items: center;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: #c2c2c2 0 5px 10px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  #engsize {
+    font-size: smaller;
+  }
+  
+  #total-A {
+    color: white;
+
+  }
+  
+  .table-body {
+    align-items: center;
+  }
+  
+  #btgrey{
+      border-bottom: 1px gray solid;
+    } 
+  
+  #coverfoot {
+    background-color: #473366;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .bbbtttnnn{
+      background-color: #fd6e2a;
+      color: #ffffff;
+      width: 98%;
+  }
+
+  #coverfoot{
+    padding-top: 3px;
+    padding-bottom: 4px;
+  }

@@ -1,0 +1,61 @@
+  .container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #f9f9f9;
+  }
+  
+  .succ-container {
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid #28a745;
+    border-radius: 10px;
+    box-shadow: #c2c2c2 0 5px 10px;
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  .success-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .success-message i {
+    font-size: 9.5rem;
+    color: #28a745;
+    margin-bottom: 10px;
+  }
+  
+  .success-message h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #000000;
+  }
+  
+  .showcheck-table {
+    width: 100%;
+    text-align: left;
+    border-spacing: 0 10px; /* เพิ่มช่องว่างระหว่างแถว */
+  }
+  
+  .totaltotaltotal {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0;
+    color: #333333;
+  }
+  
+  .bbbtttnnn {
+    background-color: #fd6e2a;
+    color: #ffffff;
+    border: 2px solid #473366;
+  }
+  
+  .download {
+    color: cornflowerblue;
+  }
+  
+  

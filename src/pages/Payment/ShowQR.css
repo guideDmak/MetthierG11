@@ -1,0 +1,47 @@
+.container{
+
+    width: 100%;
+    height: auto;
+  }
+  
+  .showqr-container{
+    margin-top: 20%;
+    width: 100%;
+    height: auto;
+    border: 1px solid #473366;
+    border-radius: 10px;
+    box-shadow: #c2c2c2 0 5px 10px;
+  }
+  
+  .showqr-table{
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .Qrshow{
+    padding-top: 40px;
+    /* padding-bottom: 200px; */
+    text-align: center;
+  }
+  
+  .totaltotaltotal{
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 20px;
+  }
+
+  #coverfoot{
+    padding-top: 3px;
+    padding-bottom: 4px;
+  }
+  
+  .bbbtttnnn{
+    background-color: #fd6e2a;
+    color: #ffffff;
+  }
+  
+  .download{
+    color: cornflowerblue;
+  }

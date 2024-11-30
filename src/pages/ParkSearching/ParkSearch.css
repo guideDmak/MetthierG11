@@ -1,0 +1,157 @@
+.searchhead{
+    text-align: center;
+    color: #350061;
+    margin-bottom: 25px;
+}
+
+.carousel-indicators [data-bs-target] {
+    border-radius: 100%;
+    width: 10px;
+    height: 10px;
+}
+
+.carousel-img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+
+
+}
+.carousel-text{
+    text-shadow: black 0px 2px 8px;
+}
+
+.Parking-inner {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    background: #4733664d;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 130px;
+}
+
+.carousel-container {
+    width: 95%;  /* กำหนดขนาดคงที่ของ Carousel ตามต้องการ */
+    margin: 0 auto; /* ทำให้ Carousel อยู่ตรงกลางหน้าจอ */
+}
+
+.DateSer {
+    padding-bottom: 1rem;
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 30% 60%; /* ช่องแรก 30% ช่องสอง 70% */
+    gap: 5%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+.GridDate {
+    display: flex;
+    justify-content: center;                
+    align-items: center;     
+    
+}
+.ParkCar-containner {
+    display: grid;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center; 
+}
+
+.Parking-containner{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    color: #473366;
+}
+
+.Console-containner {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 10px;
+    border: solid #FD6E2B 2px;
+    display: grid;
+    margin-bottom: 2rem;
+    
+}
+
+.DropDown {
+    text-align: right;
+}
+
+#dropdown-basic {
+    text-align: right;
+    width: 100%;
+    padding-bottom: 0.5rem;
+
+}
+
+.btn-Ai {
+    background-color: #473366;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-Ai:hover {
+    background-color: #FD6E2B;
+}
+
+.Location{
+    font-size: 1.5rem;
+    text-align: left;
+    justify-items: left;
+
+}
+
+.Text{
+    margin-top: 0.3rem;
+    margin-right: 0.5rem;
+    text-align: right;
+    justify-items: right;
+}
+
+.Buttoning{
+    background-color: #473366;
+    width: 100%;
+    color: #fff;
+
+}
+
+.ReButtoning{
+    background-color: #FD6E2B;
+    width: 100%;
+    color: #fff;
+}
+
+.Buttoning:disabled {
+    background-color: #473366; 
+    color: white; 
+    opacity: 0.7; 
+    cursor: not-allowed;
+}
+
+.ReButtoning:disabled {
+    background-color: #FD6E2B; 
+    color: white;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.boot-btn{
+    background-color: #FD6E2B; 
+    color: rgb(27, 8, 8);
+    opacity: 0.7;
+    cursor: not-allowed;
+
+}
+
+.Bootstrap-Button{
+    background-color: #fff;
+    border: none;
+    color: gray;
+
+}

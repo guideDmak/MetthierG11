@@ -1,0 +1,58 @@
+.Ucontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* สูงเต็มหน้าจอ */
+    background-color: #f9f9f9;
+  }
+  
+  .unsucc-container {
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #d9534f; /* สีแดงสำหรับสถานะล้มเหลว */
+    border-radius: 10px;
+    box-shadow: #c2c2c2 0 5px 10px;
+    padding: 20px;
+    background-color: #ffffff;
+  }
+  
+  .error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .error-message i {
+    font-size: 9.5rem;
+    color: #d9534f; /* สีแดง */
+    margin-bottom: 10px;
+  }
+  
+  .error-message h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #000000;
+  }
+  
+  .showcheck-table {
+    width: 100%;
+    text-align: left;
+    border-spacing: 0 10px;
+  }
+  
+  .totaltotaltotal {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0;
+    color: #333333;
+  }
+  
+  .bbbtttnnn {
+    background-color: #fd6e2a;
+    color: #ffffff;
+    border: 2px solid #d9534f;
+  }
+  

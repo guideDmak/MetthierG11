@@ -1,0 +1,200 @@
+.History {
+    text-align: center;
+    color: #350061;
+}
+
+.dropdown-toggle {
+    background-color: #fd6e2a !important;
+    color: white; /* ปรับสีข้อความให้ contrast */
+    border: none; /* เอาขอบออก (ถ้าต้องการ) */
+}
+
+.dropdown-basic{
+    background-color: #fd6e2a;
+}
+
+.list-item {
+  border: #80758a solid 3px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.formember{
+    text-align: center;
+    color: white;
+    background-color: #350061;
+    border-radius: 5px;
+    height: 50px;
+    margin: 20px;
+    padding: 8px;
+}
+
+.forvisitor{
+    text-align: center;
+    color: white;
+    background-color: #350061;
+    border-radius: 5px;
+    height: 50px;
+    margin: 20px;
+    padding: 8px;
+}
+
+.menu {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* .menu-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+} */
+
+.menu-row {
+    display: flex;
+    justify-content: space-between; /* ให้ dropdown เลื่อนไปขวา */
+    align-items: center;
+}
+
+.filter {
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #767772;
+    font-size: 14px;
+    text-align: center;
+    margin-left: 1px;
+}
+
+/* .monthselect {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 200px;
+    float: right;
+} */
+
+.monthselect {
+    margin-left: auto; /* ดัน dropdown ไปชิดขวา */
+}
+
+.dropdown-toggle {
+    width: 100%;
+    text-align: center;
+}
+
+.role1 {
+    font-size: 16px;
+    color: white;
+    margin: 5px;
+    padding: 8px;
+    background-color: #fd6e2a;
+    border-radius: 5px;
+    width: 80px;
+    box-shadow: #d2d2d2 2px 2px;
+}
+
+.role2 {
+    font-size: 16px;
+    color: white;
+    margin: 5px;
+    padding: 8px;
+    background-color: #350061;
+    border-radius: 5px;
+    width: 80px;
+    box-shadow: #d2d2d2 2px 2px;
+}
+
+.car {
+    margin-left: 20px;
+    height: 0 auto;
+}
+
+.plate {
+    margin-left: 35px;
+    font-size: 20px;
+    color: #350061;
+}
+
+.info {
+    float: right;
+    /* width: 160px; */
+    color: #350061;
+    margin: 3px;
+    margin-top: 15px;
+    margin-right: 7px;
+    font-size: 12px;
+}
+
+.pay{
+    float: right;
+    margin-right: 10px;
+    margin-top: 8px;
+    padding: 8px;
+    font-size: 12px;
+    background-color: #350061;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .small-toggle {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* ขนาดเล็ก */
+    height: 20px; /* ขนาดเล็ก */
+}
+
+.small-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.small-toggle .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px; /* เพิ่มความโค้ง */
+}
+
+.small-toggle .slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.small-toggle input:checked + .slider {
+    background-color: #fd6e2a;
+}
+
+.small-toggle input:checked + .slider:before {
+    transform: translateX(20px); /* ระยะเลื่อน */
+}
+
+.message-popup{
+  font-size: 25px;
+}
+
+.modal-close{
+  background-color: #350061;
+  color: white;
+  width: 80px;
+  height: 40px;
+}

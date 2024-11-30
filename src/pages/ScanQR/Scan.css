@@ -1,0 +1,32 @@
+.Scan-container{
+    text-align: center;
+}.you-qr-result {
+    background: white;
+    padding: 20px;
+    width: 100%;
+}
+
+#my-qr-reader {
+    margin: 20px 0;
+}
+
+.scan-page-button {
+    background-color: #f47b20;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.scan-page-button:hover {
+    background-color: #dc823d;
+}
+
+#you-qr-result {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}

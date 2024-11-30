@@ -1,0 +1,32 @@
+.container {
+  padding-bottom: 80px;
+  padding-top: 100px;
+}
+
+.list-nut {
+  border: solid 3px hwb(263 48% 36%);
+  border-radius: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  box-shadow: rgb(204, 204, 204) 0 4px 8px;
+}
+
+.infolanjod {
+  padding: 5px;
+  color: #473366;
+}
+
+.saisee {
+  color: #FD6E2A;
+}
+
+.deletehis-button{
+  height: 50px;
+  width: 50px;
+}
+
+.delete-all-button{
+  height: 60px;
+  width: 250px;
+}

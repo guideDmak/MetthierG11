@@ -1,0 +1,39 @@
+
+.header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; 
+  background-color: #ffffff; 
+  padding: 5px 0; 
+}
+
+.header-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.Metthier-logo {
+  width: 160px;
+}
+
+
+.scan-button {
+  position: absolute;
+  top: 20px; 
+  right: 15px;
+  background-color: transparent;
+  border: none;
+  font-size: 30px; 
+  color: #433362;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.scan-button:hover {
+  color: #f47b20; 
+}
