@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import "../../data/users";
-// import Proto from '../../assets/ProfilePicture/man.jpg'
-// import Default from '../../assets/ProfilePicture/Tingyun.png'
-// import { useUserData } from "../../data/users";
+import { useUserContext } from "../../data/UserContext";
 
 import imgMal from '../../assets/ProfilePicture/man.jpg'
 import imgGal from '../../assets/ProfilePicture/girl.jpg'
 import CarGirl from '../../assets/history/car1.png'
 
 function Home({ currentUser }) {
+  const { user } = useUserContext();
   const [latestAppointment, setLatestAppointment] = useState(null);
+  
+  // Use context user data if available, otherwise use passed props
+  const userData = user || currentUser;
 
   useEffect(() => {
     const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
     if (appointments.length > 0) {
       setLatestAppointment(appointments[appointments.length - 1]); // ดึงนัดหมายล่าสุด
     }
-
   }, []);
 
-  const isVisitor = currentUser?.role === "Visitor";
+  // Check if user is a member (role_id = 1)
+  const isMember = userData?.role_id === 1;
 
   return (
     <div className="container d-flex flex-column align-items-center">
@@ -30,61 +31,53 @@ function Home({ currentUser }) {
       {/* Profile Section */}
       <h3 className="section-title">โปรไฟล์</h3>
       <div className="profile-container mt-4">
-        {!isVisitor && (
-          <div>
-            <img
-              src={imgMal}
-              alt="Profile image"
-              style={{ width: "130px", height: "160px",objectFit:"cover" }}
-            />
-          </div>
-        )}
-        {isVisitor && (
-          <div>
-            <img
-              src={imgGal}
-              alt="Profile image"
-              style={{ width: "130px", height: "160px",objectFit:"cover" }}
-            />
-          </div>
-        )}
+        <div>
+          <img
+            src={isMember ? imgMal : imgGal}
+            alt="Profile image"
+            style={{ width: "130px", height: "160px", objectFit:"cover" }}
+          />
+        </div>
         
         <div className="profile-info" style={{ position: "relative" }}>
           <div className="userstatus-Big">
             <div className='userstatus1' align='center'>
-              <b>{currentUser?.role || "ไม่ระบุ"}</b>
+              <b>{isMember ? "Member" : "Visitor"}</b>
             </div>
           </div>
           <br />
           <div className="infostatus">
             <p>
-              ชื่อ: <span>{currentUser?.name || "ไม่ระบุ"}</span>
+              ชื่อ: <span>{userData?.first_name || "ไม่ระบุ"}</span>
             </p>
             <p>
-              เบอร์โทรศัพท์: <span>{currentUser?.phone || "ไม่ระบุ"}</span>
+              นามสกุล: <span>{userData?.last_name || "ไม่ระบุ"}</span>
             </p>
             <p>
-              หมายเลขทะเบียน: <span>{currentUser?.license || "ไม่ระบุ"}</span>
+              เบอร์โทรศัพท์: <span>{userData?.phone_number || "ไม่ระบุ"}</span>
+            </p>
+            <p>
+              หมายเลขทะเบียน: <span>{userData?.license || "ไม่ระบุ"}</span>
             </p>
 
-          {/* // Member ID(Visitor ไม่มี) */}
-          {currentUser?.role === "Member" && (
-            <p>
-              หมายเลขบัตร: <span>{currentUser?.memberID || "12345"}</span>
-            </p>
-                      )}
+            {/* Member ID (Visitor ไม่มี) */}
+            {isMember && (
+              <p>
+                หมายเลขบัตร: <span>{userData?.id || "ไม่ระบุ"}</span>
+              </p>
+            )}
           </div>
 
-
           <Link to="/editprofile">
-          <i
-            className="bi bi-pencil-square"
-            style={{
-              fontSize: "23px",
-              color: "#f47b20",
-              float: "right",
-            }}
-          ></i></Link>
+            <i
+              className="bi bi-pencil-square"
+              style={{
+                fontSize: "23px",
+                color: "#f47b20",
+                float: "right",
+              }}
+            ></i>
+          </Link>
         </div>
       </div>
 
@@ -99,7 +92,7 @@ function Home({ currentUser }) {
             style={{ width: "150px", height: "100px" }}
           />
           <div className="tabeinrot" align='center'>
-            <p><span>{currentUser?.license || "ไม่ระบุ"}</span></p>
+            <p><span>{userData?.license || "ไม่ระบุ"}</span></p>
           </div>
         </div>
         <div className="profile-info">
@@ -113,17 +106,15 @@ function Home({ currentUser }) {
             วันที่จอด: <span>17 พ.ย. 67</span>
           </p>
 
-          {/* // Payment (Member cannot use) */}
-          {currentUser?.role === "Visitor" && (
+          {/* Payment (Member cannot use) */}
+          {!isMember && (
             <>
-          <Link to={"/payment"}>
-          <button className="btn-custom-warning w-100% mt-2">ชำระเงิน</button>
-        </Link>
-        </>
+              <Link to={"/payment"}>
+                <button className="btn-custom-warning w-100% mt-2">ชำระเงิน</button>
+              </Link>
+            </>
           )}
-
         </div>
-        
       </div>
 
       {/* Appointment Details */}
@@ -139,25 +130,21 @@ function Home({ currentUser }) {
           <p style={{ textAlign: "center" }}>ไม่มีข้อมูลการนัดหมาย</p>
         )}
 
-        {/* // Appointment (Visitor cannot use) */}
-        {currentUser?.role === "Member" && (
+        {/* Appointment (Member only) */}
+        {isMember && (
           <>
-        <Link to={"/historyapm"}>
-          <button className="btn-custom-warning w-100 mt-2">ประวัติการนัดหมาย</button>
-        </Link>
+            <Link to={"/historyapm"}>
+              <button className="btn-custom-warning w-100 mt-2">ประวัติการนัดหมาย</button>
+            </Link>
 
-        <Link to={"/appointment"}>
-          <button className="btn-custom-primary w-100">เพิ่มการนัดหมาย</button>
-        </Link>
-        </>
-)}
-        
+            <Link to={"/appointment"}>
+              <button className="btn-custom-primary w-100">เพิ่มการนัดหมาย</button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
 }
 
 export default Home;
-
-
-

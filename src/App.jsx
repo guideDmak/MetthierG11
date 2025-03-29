@@ -3,7 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.min.css";
 import "./App.css";
 import { UserProvider } from "./data/UserContext";
 
-import { HashRouter, Routes, Route, Navigate,BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Layout from "./layouts/Layout/Layout";
@@ -24,7 +24,6 @@ import ShowQR from "./pages/Payment/ShowQR";
 import Unsucc from "./pages/Payment/Unsucc";
 import Succ from "./pages/Payment/Succ";
 
-
 import ScanQR from "./pages/ScanQR/Scan";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/register";
@@ -32,9 +31,15 @@ import Forget from "./pages/Forget/forget";
 
 const App = () => {
   const [tab, setTab] = useState("home");
-  const [currentUser, setCurrentUser] = useState(null); // Stores current user
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
+    // ตรวจสอบว่ามี user ใน localStorage หรือไม่
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setCurrentUser(JSON.parse(storedUser));
+    }
+    
     setTab("home");
   }, []);
 
@@ -45,52 +50,53 @@ const App = () => {
 
   // Handles user logout
   const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
     setCurrentUser(null);
   };
 
   return (
     <BrowserRouter>
       <UserProvider>  
-      <Routes>
-        {/* Public Route */}
-        <Route path="/" element={<Login onLogin={handleLogin} />} />
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Login onLogin={handleLogin} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forget" element={<Forget />} />
 
-        {/* Protected Routes */}
-        <Route
-          element={
-            <ProtectedRoute currentUser={currentUser}>
-              <Layout tab={tab} setTab={setTab} currentUser={currentUser} />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="/home" element={<Home currentUser={currentUser} />} />
-          <Route path="/parksearch" element={<ParkSearch />} />
-          <Route path="/history" element={<History currentUser={currentUser} />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/showqr" element={<ShowQR />} />
-          <Route path="/unsucc" element={<Unsucc />} />
-          <Route path="/succ" element={<Succ />} />
-          
+          {/* Protected Routes */}
           <Route
-            path="/profilesetting"
-            element={<ProfileSetting onLogout={handleLogout} currentUser={currentUser} />}
-          />
-          <Route path="/editprofile" element={<EditProfile currentUser={currentUser} />} />
-          <Route path="/editpassword" element={<EditPassword />} />
-          <Route path="/changecar" element={<ChangeCar />} />
+            element={
+              <ProtectedRoute currentUser={currentUser}>
+                <Layout tab={tab} setTab={setTab} currentUser={currentUser} />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/home" element={<Home currentUser={currentUser} />} />
+            <Route path="/parksearch" element={<ParkSearch />} />
+            <Route path="/history" element={<History currentUser={currentUser} />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/showqr" element={<ShowQR />} />
+            <Route path="/unsucc" element={<Unsucc />} />
+            <Route path="/succ" element={<Succ />} />
+            
+            <Route
+              path="/profilesetting"
+              element={<ProfileSetting onLogout={handleLogout} currentUser={currentUser} />}
+            />
+            <Route path="/editprofile" element={<EditProfile currentUser={currentUser} />} />
+            <Route path="/editpassword" element={<EditPassword />} />
+            <Route path="/changecar" element={<ChangeCar />} />
 
-          <Route path="/appointment" element={<Appointment />} />
-          <Route path="/historyapm" element={<HistoryAPM />} />
+            <Route path="/appointment" element={<Appointment />} />
+            <Route path="/historyapm" element={<HistoryAPM />} />
 
-          <Route path="/scanqr" element={<ScanQR />} />
+            <Route path="/scanqr" element={<ScanQR />} />
+          </Route>
           
-        </Route>
-        
-        {/* Fallback Route */}
-        <Route path="/register" element={<Register />}  />
-        <Route path="/forget" element={<Forget/>} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+          {/* Fallback Route */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
       </UserProvider>
     </BrowserRouter>
   );
@@ -102,4 +108,3 @@ function ProtectedRoute({ children, currentUser }) {
 }
 
 export default App;
-  

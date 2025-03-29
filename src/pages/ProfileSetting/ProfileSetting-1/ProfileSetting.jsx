@@ -1,93 +1,84 @@
-
+import React from "react";
 import "./ProfileSetting.css";
-import { useNavigate } from 'react-router-dom';
-import Logo from "../metthierLOGO.png";
-import { Link } from "react-router-dom";
-import imgMal from '../../../assets/ProfilePicture/man.jpg'
-import imgGal from '../../../assets/ProfilePicture/girl.jpg'
+import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../../../data/UserContext";
 
-function Profile({onLogout, currentUser}) {
+function ProfileSetting({ onLogout, currentUser }) {
   const navigate = useNavigate();
+  const { logout, user } = useUserContext();
+  
+  // Use context user data if available, otherwise use passed props
+  const userData = user || currentUser;
 
-  const ProfileEditClick = () => {
-    navigate('/EditProfile'); // เปลี่ยนเส้นทางไปหน้า EditProfile
-  };
   const handleLogout = () => {
-    onLogout(); // รีเซ็ตสถานะผู้ใช้
-    navigate("/"); // กลับไปที่หน้าล็อกอิน
+    // Call the logout function from context
+    logout();
+    
+    // Call the onLogout prop function
+    onLogout();
+    
+    // Navigate to login page
+    navigate('/');
   };
-
-  const isVisitor = currentUser?.role === "Visitor";
 
   return (
-    <>
-      <img alt="Logo" style={{maxWidth:"50%", height:"auto",marginBottom:"7rem"}}/>
-      <div style={{display:"flex", justifyContent:"center", alignItems:"center",color:"rgba(71, 51, 102, 1)"}}><p style={{fontSize:"20px"}}>โปรไฟล์</p></div>
-      <div className="App">
-      <center >
-        <div className="member" >{currentUser?.role || "ไม่ระบุ"}</div>
-        <div className="Big-container">
- 
-          <div className="container-Profile">
+    <div className="container d-flex flex-column align-items-center">
+      <div className="space-br"></div>
 
-            <div className="img-Profile-1">
-              {!isVisitor && (
-                <div>
-                  <img className="Img-Real" 
-                  src={imgMal} alt="Profile image" />
-                </div>
-              )}
-              {isVisitor && (
-                <div>
-                  <img className="Img-Real" 
-                  src={imgGal} alt="Profile image" />
-                </div>
-              )}
-            </div>
+      <h3 className="section-title">ตั้งค่าบัญชี</h3>
 
-            <p>
-              <span style={{color:"rgba(71, 51, 102, 1)", fontSize:"15px"}}>ชื่อ : </span>
-              <span style={{color:"rgba(253, 110, 43, 1)", fontSize:"15px"}}>{currentUser?.name || "ไม่ระบุ"}</span>
-            </p>
-            <p>
-              <span style={{color:"rgba(71, 51, 102, 1)", fontSize:"15px"}}>เบอร์โทรศัพท์ : </span>
-              <span style={{color:"rgba(253, 110, 43, 1)", fontSize:"15px"}}>{currentUser?.phone || "ไม่ระบุ"}</span>
-            </p>
-              {currentUser?.role === "Member" && (
-            <p>
-              <span style={{color:"rgba(71, 51, 102, 1)", fontSize:"15px"}}>เลขที่บัตร : </span>
-              <span style={{color:"rgba(253, 110, 43, 1)", fontSize:"15px"}}>{currentUser?.memberID || "12345"}</span>
-            </p>
-              )}
-            <p>
-              <span style={{color:"rgba(71, 51, 102, 1)", fontSize:"15px"}}>หมายเลขทะเบียนรถ : </span>
-              <span style={{color:"rgba(253, 110, 43, 1)", fontSize:"15px"}}>{currentUser?.license || "ไม่ระบุ"}</span>
-            </p>
-            <Link to={'/EditProfile'}>
-              <button 
-              onClick={ProfileEditClick} 
-              style={{marginBottom:"10px", color:"rgba(71, 51, 102, 1)", backgroundColor:"white", border:"none", borderRadius:'5px', width:"52px", height:"26px", boxShadow:"0px 1px 2px rgba(0, 0, 0, 0.25)"}}>
-                Edit
-              </button>
-            </Link>
+      <div className="settings-container">
+        <Link to="/editprofile" className="setting-item">
+          <div className="setting-icon">
+            <i className="bi bi-person-fill"></i>
           </div>
+          <div className="setting-text">
+            <h5>แก้ไขข้อมูลส่วนตัว</h5>
+            <p>แก้ไขชื่อหรือข้อมูลส่วนตัวของคุณ</p>
+          </div>
+          <div className="setting-arrow">
+            <i className="bi bi-chevron-right"></i>
+          </div>
+        </Link>
 
-          <Link to={'/ChangeCar'}>
-            <button className="large-button">เปลี่ยนรถ</button>
-          </Link>
-          <br />
-          <Link to={'/EditPassword'}>
-            <button className="large-button">เปลี่ยนรหัสผ่าน</button>
-          </Link>
-          <br />
-          <button className="large-button" 
-          style={{marginBottom:"10px",}} 
-          onClick={handleLogout}>Log out</button>
+        <Link to="/editpassword" className="setting-item">
+          <div className="setting-icon">
+            <i className="bi bi-shield-lock-fill"></i>
+          </div>
+          <div className="setting-text">
+            <h5>เปลี่ยนรหัสผ่าน</h5>
+            <p>เปลี่ยนรหัสผ่านของคุณ</p>
+          </div>
+          <div className="setting-arrow">
+            <i className="bi bi-chevron-right"></i>
+          </div>
+        </Link>
+
+        <Link to="/changecar" className="setting-item">
+          <div className="setting-icon">
+            <i className="bi bi-car-front-fill"></i>
+          </div>
+          <div className="setting-text">
+            <h5>เปลี่ยนแปลงข้อมูลรถ</h5>
+            <p>เพิ่มหรือแก้ไขข้อมูลรถของคุณ</p>
+          </div>
+          <div className="setting-arrow">
+            <i className="bi bi-chevron-right"></i>
+          </div>
+        </Link>
+
+        <div className="setting-item" onClick={handleLogout}>
+          <div className="setting-icon logout-icon">
+            <i className="bi bi-box-arrow-right"></i>
+          </div>
+          <div className="setting-text">
+            <h5 className="logout-text">ออกจากระบบ</h5>
+            <p>ออกจากบัญชีของคุณ</p>
+          </div>
         </div>
-        </center>
       </div>
-    </>
+    </div>
   );
 }
 
-export default Profile;
+export default ProfileSetting;

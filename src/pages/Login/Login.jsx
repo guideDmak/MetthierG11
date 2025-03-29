@@ -9,22 +9,28 @@ import LineLogo from "../../assets/Line Logo.png";
 import BottomImage from "../../assets/bottom.png";
 
 function Login({ onLogin }) {
- // ดึงฟังก์ชัน verifyUser จาก context
-  const [userInput, setUserInput] = useState("Saksom");
-  const [password, setPassword] = useState("12345");
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const { verifyUser } = useUserContext();
+  const { login, error } = useUserContext();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const user = verifyUser(userInput, password);
-    if (user) {
-      onLogin(user); // บันทึกข้อมูลผู้ใช้
-      navigate("/home"); // ไปยังหน้า home
-    } else {
-      setError("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+    setIsLoading(true);
+    
+    try {
+      const user = await login(username, password);
+      
+      if (user) {
+        onLogin(user); // บันทึกข้อมูลผู้ใช้
+        navigate("/home"); // ไปยังหน้า home
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -43,11 +49,12 @@ function Login({ onLogin }) {
 
       <Form onSubmit={handleLogin}>
         <Form.Group className="form-group" controlId="userOrPhone">
-          <Form.Label className="form-label">ชื่อบัญชีผู้ใช้ หรือ เบอร์โทรศัพท์</Form.Label>
+          <Form.Label className="form-label">ชื่อบัญชีผู้ใช้</Form.Label>
           <Form.Control
             type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
           />
         </Form.Group>
 
@@ -57,26 +64,27 @@ function Login({ onLogin }) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </Form.Group>
 
         <div className="links-container">
           <Link to="/register">
-            <button type="submit" className="link-text">ลงทะเบียน</button>
+            <button type="button" className="link-text">ลงทะเบียน</button>
           </Link>
           <Link to="/forget">
-            <button type="submit" className="link-text">ลืมรหัสผ่าน</button>
+            <button type="button" className="link-text">ลืมรหัสผ่าน</button>
           </Link>
         </div>
 
-        <button type="submit" className="login-button">
-          เข้าสู่ระบบ
+        <button type="submit" className="login-button" disabled={isLoading}>
+          {isLoading ? "กำลังดำเนินการ..." : "เข้าสู่ระบบ"}
         </button>
 
         <div className="separator">เข้าสู่ระบบด้วยวิธีอื่น</div>
 
         <center>
-          <button className="line-button">
+          <button type="button" className="line-button">
             <img
               className="Line-Logo"
               src={LineLogo}
